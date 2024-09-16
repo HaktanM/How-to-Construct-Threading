@@ -37,7 +37,7 @@ Let's first examine how a sequential implementation operates in this scenario. I
 
 In this sequential approach, when the GPU is processing the data, the CPU must wait for the completion of that task. Conversely, when the CPU is processing the data, the GPU has to wait. This results in inefficiencies, as both the CPU and GPU are idly waiting at different stages of the processing pipeline.
 
-### Threading Implementation
+### Threaded Implementation
 Now, let's examine the threaded implementation. I have implemented two threads: the first thread is dedicated to YOLO, which continuously reads image frames and saves the results in a buffer using YOLO. The second thread, the Tracker thread, directly reads from the buffer and utilizes the results to perform tracking.
 
 ![Threaded Implementation](threaded.png)
