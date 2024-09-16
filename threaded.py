@@ -7,19 +7,19 @@ import threading
 
 class ResultBuffer:
     def __init__(self) -> None:
-        self.lock = threading.Lock()
+        self.lock = threading.Lock() # Lock make sure that 2 threads do not modify the memory simultanously
         self.results = []
     def append(self,result):
         # Lock the array
-        self.lock.acquire()
+        self.lock.acquire() # While modifying the buffer, we need to lock the memory
         try:
             self.results.append(result)
         finally:
             # Unlock the array
-            self.lock.release()
+            self.lock.release() # Unlock the memory
             
-    def readNext(self):
-        self.lock.acquire()
+    def readNext(self): 
+        self.lock.acquire() # While modifying the buffer, we need to lock the memory
         try:
             if len(self.results)>0:
                 # Read and delete the first item
@@ -28,7 +28,7 @@ class ResultBuffer:
                 result = None
         finally:
             # Unlock the array
-            self.lock.release()
+            self.lock.release() # Unlock the memory
             
         return result
     
