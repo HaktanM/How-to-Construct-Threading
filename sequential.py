@@ -3,8 +3,10 @@ import cv2
 import utils
 import time
 
+path_to_input_video = ".../<video_name>.mp4"  # path to your favorite video
+
 # Load the video
-video = utils.VideoReader("cars.mp4", 11, 12)
+video = utils.VideoReader(path_to_input_video, 0, 1) # 0 1 represents the startin and stopping video time.
 
 # Save the output
 video_out = utils.VideoCreator("annotated_cars_seqeuntial.mp4", video.fps)
@@ -25,7 +27,7 @@ while True:
     annotated_frame = results[0].plot()
     
     video_out.feedFrame(annotated_frame)
-    time.sleep(0.01)
+    time.sleep(0.01) # This represent the time required for your complicated tracker
 
 
 

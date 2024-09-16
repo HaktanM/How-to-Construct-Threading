@@ -34,9 +34,9 @@ class ResultBuffer:
     
     
 class Manager:
-    def __init__(self) -> None:
+    def __init__(self, path_to_input_video) -> None:
         # Load the video
-        self.video = utils.VideoReader("cars.mp4", 11, 12)
+        self.video = utils.VideoReader(path_to_input_video, 0, 1) # 0 1 represents the startin and stopping video time
         
         # Save the output
         self.video_out = utils.VideoCreator("annotated_cars_threaded.mp4",self.video.fps)
@@ -73,7 +73,7 @@ class Manager:
             if result is not None:
                 annotated_frame = result[0].plot()
                 self.video_out.feedFrame(annotated_frame)
-                time.sleep(0.01)
+                time.sleep(0.01) # This represent the time required for your complicated tracker
             else:
                 if self.yolo_finished: # If result is None and yolo thread is ended, we can end the track thread as well
                     break
@@ -84,7 +84,9 @@ class Manager:
     
 if __name__ == "__main__":
     
-    manager = Manager()
+    path_to_input_video = ".../<video_name>.mp4"  # path to your favorite video
+    
+    manager = Manager(path_to_input_video)
     
     start_time = time.monotonic()
     
