@@ -9,6 +9,10 @@ aimed at explaining how threading can be implemented effectively.
 
 ### Toy Example
 To help illustrate the concept, we will focus on a toy example. 
-Imagine you want to implement a visual tracker using YOLO. YOLO detects objects in an image frame, 
+Imagine you want to implement a visual tracker using [YOLO](https://docs.ultralytics.com/). YOLO detects objects in an image frame, 
 and then a tracker processes the labels and bounding boxes to track individual objects within the scene..
+
+### Sequential Implementation
+Let us first examine how a sequential implementation works in such a case
+
 
